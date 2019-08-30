@@ -1,0 +1,6 @@
+<h2>Pets:</h2>
+<ul>
+    <li *ngFor="let p of pets">
+        {{p.id}} - {{p.name}} ({{p.type.description}})
+    </li>
+</ul>

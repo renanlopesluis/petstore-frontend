@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "pet-example": {
+    "pet-frontend": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/pet-example",
+            "outputPath": "dist/pet-frontend",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -63,18 +63,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "pet-example:build"
+            "browserTarget": "pet-frontend:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "pet-example:build:production"
+              "browserTarget": "pet-frontend:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "pet-example:build"
+            "browserTarget": "pet-frontend:build"
           }
         },
         "test": {
@@ -111,15 +111,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "pet-example:serve"
+            "devServerTarget": "pet-frontend:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "pet-example:serve:production"
+              "devServerTarget": "pet-frontend:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "pet-example"
+  "defaultProject": "pet-frontend"
 }
