@@ -32,10 +32,7 @@ export class PetListComponent implements OnInit {
   }
 
   initTypes(){
-    this.types = [];
-    let dog = {id: 1, description:'Dog'}
-    let cat = {id: 2, description:'Cat'}
-    this.types.push(dog);
-    this.types.push(cat);
+    this.petService.listTypes().subscribe(data => this.types = data);
   }
+  
 }
