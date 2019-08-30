@@ -6,12 +6,16 @@ import { HttpClient } from '@angular/common/http';
 })
 export class PetService {
 
-  baseUrl = "http://localhost:8080/pet/";
-  petsUrl = "listPets";
+  baseUrl = "http://localhost:8080/petstore/";
+  petUrl = "pet";
 
   constructor(private http: HttpClient) { }
 
   list(){
-    return this.http.get<any[]>(`${this.baseUrl.concat(this.petsUrl)}`);
+    return this.http.get<Array<any>>(this.baseUrl.concat(this.petUrl));
+  }
+
+  create(pet: any){
+    return this.http.post(this.baseUrl.concat(this.petUrl), pet);
   }
 }

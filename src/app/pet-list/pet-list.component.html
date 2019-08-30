@@ -1,3 +1,33 @@
+
+<h2>Pet Register</h2>
+<section>
+    <div class="container">
+        <form method="post" #frm="ngForm" (ngSubmit)="create(frm)">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name"
+                    class="form-control" placeholder="name"
+                    [(ngModel)]="pet.name" required/>
+            </div>
+            <div class="form-group">
+                <label for="type">Type</label>
+                <select [(ngModel)]="pet.type" required name="type">
+                    <option *ngFor="let t of types" [ngValue]= "t">
+                      {{t.description}}
+                    </option>
+                </select> 
+            </div>
+            <div class="form-group">
+                <label for="name">Age</label>
+                <input type="text" id="age" name="age"
+                    class="form-control" placeholder="age"
+                    [(ngModel)]="pet.age" required/>
+            </div>
+            <button type="submit" class="btn btn-primary"
+            [disabled]="frm.invalid">Save</button>
+        </form>
+    </div>
+</section>
 <h2>Pets:</h2>
 <ul>
     <li *ngFor="let p of pets">
