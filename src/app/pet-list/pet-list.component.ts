@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PetService } from './service/pet.service';
+import { PetTypeService } from './service/pettype.service';
 import { FormGroup } from '@angular/forms';
 
 @Component({
@@ -12,7 +13,7 @@ export class PetListComponent implements OnInit {
   pets: Array<any>;
   pet: any;
   types : Array<any>;
-  constructor(private petService: PetService) { }
+  constructor(private petService: PetService, private petTypeService : PetTypeService) { }
 
   ngOnInit() {
     this.initTypes();
@@ -32,7 +33,7 @@ export class PetListComponent implements OnInit {
   }
 
   initTypes(){
-    this.petService.listTypes().subscribe(data => this.types = data);
+    this.petTypeService.list().subscribe(data => this.types = data);
   }
   
 }

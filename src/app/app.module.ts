@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { PetListComponent } from './pet-list/pet-list.component';
 
 import { PetService } from './pet-list/service/pet.service';
+import { PetTypeService } from './pet-list/service/pettype.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { PetService } from './pet-list/service/pet.service';
     HttpClientModule,
     FormsModule
   ],
-  providers: [PetService],
+  providers: [PetService, PetTypeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
