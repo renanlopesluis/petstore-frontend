@@ -1,22 +1,21 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { UtilsService } from 'src/app/utils.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PetService {
 
-  baseUrl = "http://localhost:8080/petstore/";
-  petUrl = "pet";
+  private petUrl = "pet";
 
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private utils : UtilsService) { }
 
   list(){
-    return this.http.get<Array<any>>(this.baseUrl.concat(this.petUrl));
+    return this.http.get<Array<any>>(this.utils.getUrlBase().concat(this.petUrl));
   }
   
   create(pet: any){
-    return this.http.post(this.baseUrl.concat(this.petUrl), pet);
+    return this.http.post(this.utils.getUrlBase().concat(this.petUrl), pet);
   }
 }
