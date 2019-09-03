@@ -11,7 +11,7 @@
             </div>
             <div class="form-group">
                 <label for="type">Type</label>
-                <select [(ngModel)]="pet.type" required name="type">
+                <select [(ngModel)]="pet.type" required name="type" required>
                     <option *ngFor="let t of types" [ngValue]= "t">
                       {{t.description}}
                     </option>
@@ -19,7 +19,7 @@
             </div>
             <div class="form-group">
                 <label for="name">Age</label>
-                <input type="text" id="age" name="age"
+                <input type="number" id="age" name="age"
                     class="form-control" placeholder="age"
                     [(ngModel)]="pet.age" required/>
             </div>
@@ -31,6 +31,26 @@
 <h2>Pets:</h2>
 <ul>
     <li *ngFor="let p of pets">
-        {{p.id}} - {{p.name}} ({{p.type.description}})
+        <form #frmService="ngForm" >
+            {{p.id}} - {{p.name}} ({{p.type.description}})
+            <div *ngFor="let service of serviceOptions" required>
+                <input type="radio" name="serviceOption"
+                [value]="service.code"
+                (change)="selectServiceOption(service.code)"/>
+                <i>{{service.description}}</i>
+            </div>
+            <div>
+                <label for="type">Type</label>
+                <select [(ngModel)]="selectedServiceCode" required name="basicService" required>
+                    <option *ngFor="let bs of basicServices" [ngValue]= "bs.code">
+                        {{bs.description}}
+                    </option>
+                </select>  
+                <button *ngIf="selectedServiceOption == 1" type="submit" class="btn btn-primary"
+                    [disabled]="frmService.invalid"  (click)="executeService(selectedServiceOption, p.id, selectedServiceCode)">Bath</button>
+                <button *ngIf ="selectedServiceOption == 2" type="submit" class="btn btn-primary"
+                    [disabled]="frmService.invalid" (click)="executeService(selectedServiceOption, p.id, selectedServiceCode)">Hair Care</button>
+            </div>
+         </form>
     </li>
 </ul>

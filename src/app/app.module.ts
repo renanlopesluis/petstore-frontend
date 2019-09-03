@@ -10,6 +10,7 @@ import { PetListComponent } from './pet-list/pet-list.component';
 import { UtilsService } from './utils.service';
 import { PetService } from './pet-list/service/pet.service';
 import { PetTypeService } from './pet-list/service/pettype.service';
+import { BasicServiceService } from './pet-list/service/basic-service.service';
 
 
 @NgModule({
@@ -23,7 +24,7 @@ import { PetTypeService } from './pet-list/service/pettype.service';
     HttpClientModule,
     FormsModule
   ],
-  providers: [UtilsService, PetService, PetTypeService],
+  providers: [UtilsService, PetService, PetTypeService, BasicServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
