@@ -30,6 +30,7 @@ export class PetListComponent implements OnInit {
     this.pet = {};
     this.list();
     this.loadServiceOptions();
+    this.basicServices = [];
   }
 
   create(frm: FormGroup){

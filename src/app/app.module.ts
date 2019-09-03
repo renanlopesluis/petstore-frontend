@@ -11,6 +11,9 @@ import { UtilsService } from './utils.service';
 import { PetService } from './pet-list/service/pet.service';
 import { PetTypeService } from './pet-list/service/pettype.service';
 import { BasicServiceService } from './pet-list/service/basic-service.service';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 
 
 @NgModule({
@@ -22,7 +25,10 @@ import { BasicServiceService } from './pet-list/service/basic-service.service';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    AccordionModule.forRoot(),
+    BrowserAnimationsModule,
+    TabsModule.forRoot()
   ],
   providers: [UtilsService, PetService, PetTypeService, BasicServiceService],
   bootstrap: [AppComponent]
