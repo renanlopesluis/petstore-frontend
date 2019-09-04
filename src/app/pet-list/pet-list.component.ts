@@ -43,6 +43,12 @@ export class PetListComponent implements OnInit {
     return this.pets != undefined && this.pets.length > 0;
   }
 
+  search(name:string){
+    this.petService.search(name).subscribe(data => {
+      this.pets = data;
+    });
+  }
+
   private list(){
     this.petService.list().subscribe(data => {
       this.pets = data;
