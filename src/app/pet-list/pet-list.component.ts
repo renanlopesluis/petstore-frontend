@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PetService } from '../service/pet.service';
 import { BasicServiceService } from '../service/basic-service.service';
+import { Subject } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 
 interface petResponse {
@@ -15,9 +17,10 @@ interface petResponse {
 export class PetListComponent implements OnInit {
 
   pets: Array<any>;
-  serviceOptions: Array<any>;
+  serviceOptions: Array<any> = [];
   basicServices: Array<any>;
   selectedServiceOption: number;
+  query = new Subject<string>();
 
   constructor(private petService: PetService, private basicService : BasicServiceService) { }
 
@@ -43,20 +46,27 @@ export class PetListComponent implements OnInit {
     return this.pets != undefined && this.pets.length > 0;
   }
 
-  search(name:string){
-    this.petService.search(name).subscribe(data => {
-      this.pets = data;
-    });
-  }
+  search($event){
+    let q = $event.target.value;
+    this.query.next(q);
+    this.executeQuery();
+  } 
 
   private list(){
-    this.petService.list().subscribe(data => {
-      this.pets = data;
-    });
+    this.petService
+      .list().subscribe(data => {this.pets = data;})
+  }
+  
+  private executeQuery(){
+    this.query.pipe(debounceTime(200)).subscribe(
+      searchValue => this.petService
+      .search(searchValue).subscribe(data => {this.pets = data;})
+    );
   }
 
   private loadServiceOptions(){
-    this.serviceOptions =  this.basicService.getServiceOptions();
+    if(this.serviceOptions.length == 0)
+      this.serviceOptions =  this.basicService.getServiceOptions();
   }
 
 }

@@ -1,9 +1,7 @@
 <h2 class="main">Pets</h2>
 <div class="input-group">
-    <input type="text" class="form-control filter" id="filterName" name="filterName" #filterName placeholder="type the pet's name here..."/>
-    <span class="input-group-btn">
-        <button  type="button" class="btn btn-primary" (click)="search(filterName.value)">Search</button>
-    </span>
+    <input type="text" class="form-control filter" id="filterName" name="filterName" 
+    placeholder="search pets..." (keydown)="search($event)"/>
 </div>
 <div *ngIf="showList()">
     <section>
@@ -39,6 +37,6 @@
         </div>
     </section>
 </div>
-<div *ngIf="!showList()">
+<div class="filter" *ngIf="!showList()">
     <p>There is no pet to be shown.</p>
 </div>
