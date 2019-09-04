@@ -1,73 +1,38 @@
-<tabset >
-    <tab heading="Home" id="tabHome"></tab>
-    <tab heading="Pet Register" id="tabRegister">
-        <div>
-            <h2 class="panel-title">Pet Register</h2>
-            <section>
-                <div class="container">
-                    <form method="post" #frm="ngForm" (ngSubmit)="create(frm)">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name"
-                                class="form-control" placeholder="name"
-                                [(ngModel)]="pet.name" required/>
-                        </div>
-                        <div class="form-group">
-                            <label for="type">Type</label>
-                            <select class="form-control" [(ngModel)]="pet.type" required name="type" required>
-                                <option *ngFor="let t of types" [ngValue]= "t">
-                                {{t.description}}
-                                </option>
-                            </select> 
-                        </div>
-                        <div class="form-group">
-                            <label for="name">Age</label>
-                            <input type="number" id="age" name="age"
-                                class="form-control" placeholder="age"
-                                [(ngModel)]="pet.age" required/>
-                        </div>
-                        <button type="submit" class="btn btn-primary"
-                        [disabled]="frm.invalid">Save</button>
-                    </form>
-                </div>
-            </section>
+<h2 class="main">Pets</h2>
+<div *ngIf="showList()">
+    <section>
+        <div class="container">
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor="let p of pets">
+                    <accordion>
+                        <form #frmService="ngForm">
+                            <accordion-group heading=" {{p.id}} - {{p.name}} ({{p.type}})">
+                                <div class="input-group">
+                                    <label for="serviceOption">Service option: </label>
+                                    <span class="input-group-addon" *ngFor="let service of serviceOptions" required>
+                                        <input type="radio" name="serviceOption" [value]="service.code"
+                                        (change)="selectServiceOption(service.code)"/>
+                                        <i>{{service.description}}</i>
+                                    </span>
+                                </div>
+                                <div *ngIf="basicServices.length > 0">
+                                    <label for="type">Service type:</label>
+                                    <select class="form-control" [(ngModel)]="selectedServiceCode" required name="basicService" required>
+                                        <option *ngFor="let bs of basicServices" [ngValue]= "bs.code">
+                                            {{bs.description}}
+                                        </option>
+                                    </select>  
+                                    <button  type="submit" class="btn btn-primary"
+                                        [disabled]="frmService.invalid"  (click)="executeService(selectedServiceOption, p.id, selectedServiceCode)">OK</button>
+                                </div>
+                            </accordion-group>
+                        </form>
+                    </accordion>
+                </li>
+            </ul>
         </div>
-    </tab> 
-    <tab heading="Pet List" id="tabPetList">
-        <div *ngIf="pets.length > 0">
-            <h2>Pets:</h2>
-            <section>
-                <div class="container">
-                    <ul class="list-group">
-                        <li class="list-group-item" *ngFor="let p of pets">
-                            <accordion>
-                                <form #frmService="ngForm">
-                                    <accordion-group heading=" {{p.id}} - {{p.name}} ({{p.type}})">
-                                        <div class="input-group">
-                                            <span class="input-group-addon" *ngFor="let service of serviceOptions" required>
-                                                <input type="radio" name="serviceOption"
-                                                [value]="service.code"
-                                                (change)="selectServiceOption(service.code)"/>
-                                                <i>{{service.description}}</i>
-                                            </span>
-                                        </div>
-                                        <div *ngIf="basicServices.length > 0">
-                                            <label for="type">Service type</label>
-                                            <select class="form-control" [(ngModel)]="selectedServiceCode" required name="basicService" required>
-                                                <option *ngFor="let bs of basicServices" [ngValue]= "bs.code">
-                                                    {{bs.description}}
-                                                </option>
-                                            </select>  
-                                            <button  type="submit" class="btn btn-primary"
-                                                [disabled]="frmService.invalid"  (click)="executeService(selectedServiceOption, p.id, selectedServiceCode)">OK</button>
-                                        </div>
-                                    </accordion-group>
-                                </form>
-                            </accordion>
-                        </li>
-                    </ul>
-                </div>
-            </section>
-        </div>
-    </tab>
-</tabset>
+    </section>
+</div>
+<div *ngIf="!showList()">
+    <p>nada</p>
+</div>

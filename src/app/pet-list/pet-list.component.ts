@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { PetService } from './service/pet.service';
-import { PetTypeService } from './service/pettype.service';
-import { BasicServiceService } from './service/basic-service.service';
-import { FormGroup } from '@angular/forms';
+import { PetService } from '../service/pet.service';
+import { BasicServiceService } from '../service/basic-service.service';
+
 
 interface petResponse {
   message: string;
@@ -16,28 +15,16 @@ interface petResponse {
 export class PetListComponent implements OnInit {
 
   pets: Array<any>;
-  pet: any;
-  types: Array<any>;
   serviceOptions: Array<any>;
   basicServices: Array<any>;
   selectedServiceOption: number;
 
-  constructor(private petService: PetService, private petTypeService : PetTypeService, 
-    private basicService : BasicServiceService) { }
+  constructor(private petService: PetService, private basicService : BasicServiceService) { }
 
   ngOnInit() {
-    this.initTypes();
-    this.pet = {};
     this.list();
     this.loadServiceOptions();
     this.basicServices = [];
-  }
-
-  create(frm: FormGroup){
-    this.petService.create(this.pet).subscribe(response => {
-      this.pets.push(response);
-      frm.reset();
-    });
   }
 
   selectServiceOption(value: any){
@@ -52,17 +39,14 @@ export class PetListComponent implements OnInit {
     });
   }
 
-  private list(){
-    this.petService.list().subscribe(data => {
-      if(data != null && data != undefined && data.length > 0)
-        this.pets = data
-      else
-        this.pets = [];
-    });
+  showList(){
+    return this.pets != undefined && this.pets.length > 0;
   }
 
-  private initTypes(){
-    this.petTypeService.list().subscribe(data => this.types = data);
+  private list(){
+    this.petService.list().subscribe(data => {
+      this.pets = data;
+    });
   }
 
   private loadServiceOptions(){

@@ -1,13 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
+
+/************************* general ***************************/
+
 .main{
     text-align: center;
     font-family: cursive;
+    margin-top: 25px;;
+    margin-bottom: 10px;;
 }
-.h2, h2{
-    font-family: cursive;
-}
+
 .general{
     background-image:url('/assets/images/pets.jpg');
 }
@@ -20,26 +23,54 @@
     background:rgba(255,250,205,0.5)
 }
 span.input-group-addon  {
-    margin-right: 10px;;
-}
-.btn-primary{
-    color: #fff;
-    background-color: #155724;
-    border-color: #155724
-}
-
-.nav-item{
-    color: #155724;
+    margin-right: 10px;
+    margin-left: 10px;
 }
 
 a{
     color:#495057;
 }
 
-a:hover{
-    color:#495057
+/************************************ button *************************************/
+.btn-primary{
+    color: #fff;
+    background-color: #155724;
+    border-color: #155724 ;
+    margin-top:5px;
 }
-.nav-tabs .nav-item{
+
+.btn-primary:disabled{
+    background-color: #155724;
+    border-color: #155724;
+}
+.btn-primary:disabled:hover{
+    background-color: #155724;
+    border-color: #155724;
+}
+.btn-primary:hover{
+    background-color:#d98200;
+    border-color:#d98200;
+}
+
+/************************************ nav bar *************************************/
+.navbar{
+    margin-top: 10px;
+    margin-right:5%;
+    margin-left: 5%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background:rgba(255,250,205,0.5)
+}
+
+.navbar-light .navbar-nav >.nav-link {
+    color:#495057;
+}
+a.nav-link{
     font-style: oblique;
     font-size: larger;
 }
+.navbar img{
+    width: 50px;
+}
+
+/**********************************  **********************************/

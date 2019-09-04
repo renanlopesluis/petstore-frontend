@@ -7,19 +7,21 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PetListComponent } from './pet-list/pet-list.component';
 
-import { UtilsService } from './utils.service';
-import { PetService } from './pet-list/service/pet.service';
-import { PetTypeService } from './pet-list/service/pettype.service';
-import { BasicServiceService } from './pet-list/service/basic-service.service';
+import { UtilsService } from './service/utils.service';
+import { PetService } from './service/pet.service';
+import { PetTypeService } from './service/pettype.service';
+import { BasicServiceService } from './service/basic-service.service';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { PetRegisterComponent } from './pet-register/pet-register.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    PetListComponent
+    PetListComponent,
+    PetRegisterComponent
   ],
   imports: [
     BrowserModule,
