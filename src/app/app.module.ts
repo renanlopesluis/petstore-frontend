@@ -7,10 +7,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PetListComponent } from './pet-list/pet-list.component';
 
-import { UtilsService } from './service/utils.service';
-import { PetService } from './service/pet.service';
-import { PetTypeService } from './service/pettype.service';
-import { BasicServiceService } from './service/basic-service.service';
+import { UtilsService } from './service/utils/utils.service';
+import { PetService } from './service/pet/pet.service';
+import { PetTypeService } from './service/pet-type/pettype.service';
+import { BasicServiceService } from './service/basic-service/basic-service.service';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TabsModule } from 'ngx-bootstrap/tabs';

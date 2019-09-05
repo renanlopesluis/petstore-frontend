@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PetService } from '../service/pet.service';
-import { BasicServiceService } from '../service/basic-service.service';
+import { PetService } from '../service/pet/pet.service';
+import { BasicServiceService } from '../service/basic-service/basic-service.service';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
@@ -53,10 +53,9 @@ export class PetListComponent implements OnInit {
   } 
 
   private list(){
-    this.petService
-      .list().subscribe(data => {this.pets = data;})
+    this.petService.list().subscribe(data => {this.pets = data;})
   }
-  
+
   private executeQuery(){
     this.query.pipe(debounceTime(200)).subscribe(
       searchValue => this.petService

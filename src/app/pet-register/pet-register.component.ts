@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
-import { PetService } from '../service/pet.service';
-import { PetTypeService } from '../service/pettype.service';
+import { PetService } from '../service/pet/pet.service';
+import { PetTypeService } from '../service/pet-type/pettype.service';
 import { Observable } from 'rxjs';
 
 @Component({

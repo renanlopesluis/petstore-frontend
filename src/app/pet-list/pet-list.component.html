@@ -1,7 +1,7 @@
 <h2 class="main">Pets</h2>
 <div class="input-group">
     <input type="text" class="form-control filter" id="filterName" name="filterName" 
-    placeholder="search pets..." (keydown)="search($event)"/>
+    placeholder="search pets..." (keyup)="search($event)"/>
 </div>
 <div *ngIf="showList()">
     <section>
