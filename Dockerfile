@@ -1,15 +1,15 @@
-FROM node:12.10.0-alpine as build-step
+FROM node:alpine as node
 
 WORKDIR  /app
-COPY package.json ./
+COPY package.json /app/
 
+RUN npm i npm@latest -g
 RUN npm install
+COPY ./ /app/
+ARG env=prod
+RUN npm run build
 
-COPY . .
-
-RUN npm build
-
-FROM nginx:1.17.3-alpine as prod-stage
-COPY --from=build-step /app/dist/pet-frontend /usr/share/nginx/html
-EXPOSE 4200
-CMD ["nginx", "-g", "daemon off;"]
+FROM nginx:alpine
+COPY --from=node /app/dist /usr/share/nginx/html/
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf
+EXPOSE 80
