@@ -11,7 +11,7 @@
                     <accordion>
                         <form #frmService="ngForm">
                             <accordion-group heading=" {{p.id}} - {{p.name}} ({{p.type}})">
-                                <button class="btn btn-link btn-block clearfix" accordion-heading (click)="remove(p.id)">
+                                <button class="btn btn-link btn-block clearfix trash" accordion-heading (click)="remove(p.id)">
                                         <img title="Remove the pet" class="trash" src="../assets/images/remove.svg"/>
                                 </button>
                                 <div class="input-group">
