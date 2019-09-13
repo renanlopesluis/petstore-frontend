@@ -52,6 +52,13 @@ export class PetListComponent implements OnInit {
     this.executeQuery();
   } 
 
+  remove(id : number){
+    this.petService.remove(id).subscribe((response: petResponse)=>{
+        if(response != null && response != undefined && response.message === "Pet successfully removed!")
+          this.pets = this.pets.filter(p => p.id !== id);
+    });
+  }
+
   private list(){
     this.petService.list().subscribe(data => {this.pets = data;})
   }

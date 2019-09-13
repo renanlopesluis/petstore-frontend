@@ -61,6 +61,14 @@ a{
     border-color:#d98200;
 }
 
+.trash{
+    width: 30px;
+    height: 30px;
+    float: right;
+    margin-top: -43px;
+    margin-left: 116px;
+}
+
 /************************************ nav bar *************************************/
 .navbar{
     margin-top: 10px;

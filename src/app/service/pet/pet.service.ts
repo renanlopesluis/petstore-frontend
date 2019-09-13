@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient , HttpParams} from '@angular/common/http';
+import { HttpClient , HttpParams, HttpHeaders} from '@angular/common/http';
 import { UtilsService } from 'src/app/service/utils/utils.service';
 
 @Injectable({
@@ -9,6 +9,7 @@ export class PetService {
 
   private petsUrl = "pets";
   private petUrl = "pet";
+  
 
   constructor(private http: HttpClient, private utils : UtilsService) { }
 
@@ -27,5 +28,12 @@ export class PetService {
 
   create(pet: any) {
     return this.http.post(this.utils.getUrlBase().concat(this.petUrl), pet);
+  }
+
+  remove(id: any) : any{
+    let httpParams = new HttpParams().set('id', id);
+    let options = { params: httpParams };
+
+    return this.http.delete(this.utils.getUrlBase().concat(this.petUrl),  options);
   }
 }
