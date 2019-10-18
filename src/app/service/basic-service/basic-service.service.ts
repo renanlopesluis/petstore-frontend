@@ -12,8 +12,8 @@ export class BasicServiceService {
   private serviceOptions = [];
   private hairCareTypes = [];
   private bathTypes = [];
- 
-  constructor(private http: HttpClient, private utils : UtilsService) { 
+
+  constructor(private http: HttpClient, private utils : UtilsService) {
     this.loadServiceOptions();
     this.loadBathTypes();
     this.loadHairCareTypes();
@@ -40,13 +40,11 @@ export class BasicServiceService {
   }
 
   private doBath(petId: any, serviceCode: any){
-    let params = new HttpParams().set('petId', petId).set('bathCode', serviceCode)
-    return  this.http.put(this.utils.getUrlBase().concat(this.bathUrl),params);
+    return  this.http.put(this.utils.getUrlBase().concat(this.bathUrl),{petId: petId, serviceCode: serviceCode });
   }
 
   private doHairCare(petId: any, serviceCode: any){
-    let params = new HttpParams().set('petId', petId).set('hairCode', serviceCode)
-    return  this.http.put(this.utils.getUrlBase().concat(this.hairCareUrl),params);
+    return  this.http.put(this.utils.getUrlBase().concat(this.hairCareUrl),{petId: petId, serviceCode: serviceCode });
   }
 
   private loadServiceOptions(){
