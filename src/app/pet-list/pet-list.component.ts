@@ -54,7 +54,7 @@ export class PetListComponent implements OnInit {
 
   remove(id : number){
     this.petService.remove(id).subscribe((response: petResponse)=>{
-        if(response != null && response != undefined && response.message === "Pet successfully removed!")
+        if(response)
           this.pets = this.pets.filter(p => p.id !== id);
     });
   }

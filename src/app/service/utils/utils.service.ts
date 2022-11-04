@@ -6,7 +6,7 @@ import { HttpHeaders} from '@angular/common/http';
 })
 export class UtilsService {
 
-  URLBASE: string = "http://localhost:8080/petstore/";
+  URLBASE: string = "http://localhost:3010/petstore/";
   private headers: HttpHeaders;
  
   constructor() { 

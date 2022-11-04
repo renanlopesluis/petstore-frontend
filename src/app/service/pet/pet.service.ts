@@ -7,34 +7,29 @@ import { UtilsService } from 'src/app/service/utils/utils.service';
 })
 export class PetService {
 
-  private petsUrl = "pets";
-  private petUrl = "pet";
-  private petSearchUrl= "searchPet";
+  private URL = 'pets';
 
 
   constructor(private http: HttpClient, private utils : UtilsService) { }
 
   list(){
-    return this.http.get<Array<any>>(this.utils.getUrlBase().concat(this.petsUrl));
+    return this.http.get<Array<any>>(this.utils.getUrlBase().concat(this.URL));
   }
 
   search(name) {
-    if(name){
+    if(!name){
       return this.list();
     }else{
       let params = new HttpParams().set('name', name);
-      return this.http.get<Array<any>>(this.utils.getUrlBase().concat(this.petSearchUrl), {params});
+      return this.http.get<Array<any>>(this.utils.getUrlBase().concat(this.URL), {params});
     }
   }
 
   create(pet: any) {
-    return this.http.post(this.utils.getUrlBase().concat(this.petUrl), pet);
+    return this.http.post(this.utils.getUrlBase().concat(this.URL), pet);
   }
 
   remove(id: any) : any{
-    let httpParams = new HttpParams().set('id', id);
-    let options = { params: httpParams };
-
-    return this.http.delete(this.utils.getUrlBase().concat(this.petUrl),  options);
+    return this.http.delete(this.utils.getUrlBase().concat(this.URL).concat(`/${id}`));
   }
 }
