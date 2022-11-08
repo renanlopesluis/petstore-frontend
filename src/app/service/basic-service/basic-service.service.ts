@@ -7,8 +7,9 @@ import { UtilsService } from 'src/app/service/utils/utils.service';
 })
 export class BasicServiceService {
 
-  private bathUrl = "bath"
-  private hairCareUrl = "hair";
+  private petsUrl = 'pets';
+  private bathUrl = 'bath';
+  private hairCareUrl = 'hair';
   private serviceOptions = [];
   private hairCareTypes = [];
   private bathTypes = [];
@@ -40,22 +41,22 @@ export class BasicServiceService {
   }
 
   private doBath(petId: any, serviceCode: any){
-    return  this.http.put(this.utils.getUrlBase().concat(this.bathUrl),{petId: petId, serviceCode: serviceCode });
+    return this.http.put(`${this.utils.getUrlBase()}${this.petsUrl}/${this.bathUrl}`,{petId: petId, serviceCode: serviceCode });
   }
 
   private doHairCare(petId: any, serviceCode: any){
-    return  this.http.put(this.utils.getUrlBase().concat(this.hairCareUrl),{petId: petId, serviceCode: serviceCode });
+    return this.http.put(`${this.utils.getUrlBase()}${this.petsUrl}/${this.hairCareUrl}`,{petId: petId, serviceCode: serviceCode });
   }
 
   private loadServiceOptions(){
     this.serviceOptions = [
       {
         code: 1,
-        description: "Bath"
+        description: 'Bath'
       },
       {
         code: 2,
-        description: "Hair Care"
+        description: 'Hair Care'
       }
     ]
   }
@@ -64,11 +65,11 @@ export class BasicServiceService {
     this.hairCareTypes = [
       {
         code: 1,
-        description: "Short hair"
+        description: 'Short hair'
       },
       {
         code: 2,
-        description: "Long hair"
+        description: 'Long hair'
       }
     ]
   }
@@ -77,19 +78,19 @@ export class BasicServiceService {
     this.bathTypes = [
       {
         code: 1,
-        description: "Dry bath"
+        description: 'Dry bath'
       },
       {
         code: 2,
-        description: "Water bath"
+        description: 'Water bath'
       },
       {
         code: 3,
-        description: "Perfumeful bath"
+        description: 'Perfumeful bath'
       },
       {
         code: 4,
-        description: "Perfumeless bath"
+        description: 'Perfumeless bath'
       }
     ]
   }
